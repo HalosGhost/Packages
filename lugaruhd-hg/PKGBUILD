@@ -24,8 +24,8 @@ pkgver() {
 
 build() {
     cd "${_hgname}"
-	cmake ./ -DCMAKE_BUILD_TYPE=Release -DLUGARU_INSTALL_PREFIX=/opt/LugaruHD
-	make
+    cmake ./ -DCMAKE_BUILD_TYPE=Release -DLUGARU_INSTALL_PREFIX=/opt/LugaruHD
+    make
 }
 
 package() {
@@ -33,9 +33,9 @@ package() {
     make PREFIX=/usr DESTDIR="${pkgdir}" install
 	
     cd "${srcdir}"
-	install -Dm755 "${_hgname}.launcher" "${pkgdir}/usr/bin/${_hgname}"
-	install -Dm644 "${_hgname}/Source/win-res/${_hgname//l/L}.png" "${pkgdir}/usr/share/pixmaps/${_hgname//l/L}.png"
-	install -Dm644 "${_hgname}.desktop" "${pkgdir}/usr/share/applications/${_hgname}.desktop"
+    install -Dm755 "${_hgname}.launcher" "${pkgdir}/usr/bin/${_hgname}"
+    install -Dm644 "${_hgname}/Source/win-res/${_hgname//l/L}.png" "${pkgdir}/usr/share/pixmaps/${_hgname//l/L}.png"
+    install -Dm644 "${_hgname}.desktop" "${pkgdir}/usr/share/applications/${_hgname}.desktop"
 
-	install -Dm644 "${_hgname}/CONTENT-LICENSE.txt" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    install -Dm644 "${_hgname}/CONTENT-LICENSE.txt" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
