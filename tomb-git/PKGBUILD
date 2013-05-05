@@ -1,0 +1,50 @@
+# Maintainer: Sam Stuewe <halosghost at archlinux dot org>
+# Contributor: David Lo Re <boyska@gmail.com>
+# Contributor: nignux <nignux@freaknet.org>
+_gitname=tomb
+pkgname="${_gitname}-git"
+pkgver=b9b7927
+pkgrel=6
+pkgdesc="A simple tool to manage encrypted storage"
+arch=('i686' 'x86_64')
+url="http://tomb.dyne.org/"
+license=('GPL')
+depends=('bc' 'cryptsetup' 
+         'gnupg' 'gtk2>=2.16' 
+         'libnotify' 'pinentry' 
+         'sudo' 'zsh')
+makedepends=('git' 'autoconf')
+optdepends=('steghide: steganography support' 
+            'dcfldd: dd progress bar support'
+            'wipe: secure delete support')
+install=${_gitname}.install
+provides=('tomb')
+source=("${_gitname}::git://github.com/dyne/${_gitname//t/T}.git"
+        "${install}"
+        "_${_gitname}")
+sha256sums=('SKIP'
+            '81ed942ba0595f8d8786e4f4d2ce5f653e7d88de785485e049736986da5633a7'
+            '73a220f6e25990081f227cd78af7226935ad517bfe4898f24408ee5cc7c17315')
+
+pkgver() {
+  cd "${_gitname}"
+  git describe --always | sed 's|-|.|g'
+}
+
+prepare() {
+  cd "${_gitname}"
+  mkdir -p m4
+}
+
+build() {
+  cd "${_gitname}"
+  autoreconf -i
+  ./configure --prefix=/usr
+  make
+}
+ 
+package() {
+  install -Dm644 "_${_gitname}" "${pkgdir}/usr/share/zsh/site-functions/_${_gitname}"
+  cd "${_gitname}"
+  make DESTDIR="${pkgdir}" PREFIX=/usr install
+}
