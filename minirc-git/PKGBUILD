@@ -1,7 +1,7 @@
 # Maintainer: Sam Stuewe <halosghost at archlinux dot info>
 _gitname=minirc
 pkgname="${_gitname}-git"
-pkgver=57.5e8b84d
+pkgver=61.61702d2
 pkgrel=1
 pkgdesc="A minimalist init system using busybox"
 arch=('any')
