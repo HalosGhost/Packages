@@ -2,9 +2,9 @@
 _name=vulpes
 pkgname="${_name}-git"
 pkgver=9.a4d6a1b
-pkgrel=1
+pkgrel=2
 pkgdesc="A lightweight statusbar program for use with Alopex"
-arch=('any')
+arch=('i686' 'x86_64')
 url="https://github.com/halosghost/${_name}.git"
 license=('CCPL:CC-BY-SA')
 makedepends=('git')
@@ -16,7 +16,7 @@ pkgver() {
   echo "$(git rev-list --count HEAD).$(git describe --always )"
 }
 
-prepare() {
+build() {
   cd "${_name}"
   make
 }
