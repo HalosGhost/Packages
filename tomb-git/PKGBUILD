@@ -3,16 +3,14 @@
 # Contributor: nignux <nignux@freaknet.org>
 _name=tomb
 pkgname="${_name}-git"
-pkgver=3eb93ac
-pkgrel=2
+pkgver=416.914ac95
+pkgrel=1
 pkgdesc="A simple tool to manage encrypted storage"
 arch=('i686' 'x86_64')
 url="http://tomb.dyne.org/"
 license=('GPL')
-depends=('bc' 'cryptsetup' 
-         'gnupg' 'gtk2>=2.16' 
-         'libnotify' 'pinentry' 
-         'sudo' 'zsh')
+depends=('bc' 'cryptsetup' 'gnupg' 'gtk2>=2.16' 'libgcrypt'
+         'libnotify' 'pinentry' 'sudo' 'zsh')
 makedepends=('git')
 optdepends=('steghide: steganography support' 
             'dcfldd: dd progress bar support'
@@ -27,12 +25,19 @@ sha256sums=('SKIP'
             '73a220f6e25990081f227cd78af7226935ad517bfe4898f24408ee5cc7c17315')
 
 pkgver() {
-  cd "${_name}"
-  git describe --always | sed 's|-|.|g'
+   cd "${_name}"
+   echo "$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
- 
+
+build() {
+   cd "${_name}/extras/kdf"
+   make
+}
+
 package() {
-  install -Dm644 "_${_name}" "${pkgdir}/usr/share/zsh/site-functions/_${_name}"
-  cd "${_name}"
-  install -Dm755 "${_name}" "${pkgdir}/usr/bin/${_name}"
+   install -Dm644 "_${_name}" "${pkgdir}/usr/share/zsh/site-functions/_${_name}"
+   cd "${_name}"
+   make DESTDIR="${pkgdir}" PREFIX=/usr install
+   cd extras/kdf
+   make DESTDIR="${pkgdir}" PREFIX=/usr install
 }
