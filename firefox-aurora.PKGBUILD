@@ -13,16 +13,11 @@ license=('MPL' 'GPL' 'LGPL')
 depends=('gtk2' 'libxt' 'startup-notification' 'mime-types' 'dbus-glib' 'alsa-lib' 
          'dbus-glib' 'libnotify' 'desktop-file-utils' 'hicolor-icon-theme' 'libvpx' 
          'libevent' 'nss>=3.14.1' 'hunspell')
-install="${pkgname}.install"
 _baseurl="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora"
 _file="${_name}-${_milestone}.${_locale//_/-}.linux-${CARCH}"
 _srcsum="$(curl -vs "${_baseurl}/${_file}.checksums" 2>&1 | grep bz | grep sha512 | cut -d " " -f1)"
-source=("${pkgname}.desktop"
-        "${pkgname}-safe.desktop"
-        "${_baseurl}/${_file}.tar.bz2")
-sha512sums=('1c0eef1129625ecfb70809dbb9ab764054d1680f05b7807f503145b5889bc42babb268cb4e2b7b102f90c50cc249114f773d91992e9ac41b5a6966e3b5c95675'
-            '749bc9bb180909c7319a1576e9df1e4cb06488b33b8dd61b8f1a63e4df9208cb9bb6d0c4ecef3fbe388f78368aef4562ae1dbfda1dbbfa649aa9d247c4903610'
-            "${_srcsum}")
+source=("${_baseurl}/${_file}.tar.bz2")
+sha512sums=("${_srcsum}")
 
 pkgver() {
    cd "${_name}"
@@ -33,8 +28,6 @@ package() {
    install -d "${pkgdir}"/{usr/bin,opt}
    mv "${_name}" "${pkgdir}/opt/${pkgname}"
    ln -s "/opt/${pkgname}/${_name}" "${pkgdir}/usr/bin/${_channel}"
-   install -Dm644 "${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
-   install -Dm644 "${pkgname}-safe.desktop" "${pkgdir}/usr/share/applications/${pkgname}-safe.desktop"
    install -Dm644 "${pkgdir}/opt/${pkgname}/browser/icons/mozicon128.png" \
                   "${pkgdir}/usr/share/pixmaps/${pkgname}-icon.png"
 }
