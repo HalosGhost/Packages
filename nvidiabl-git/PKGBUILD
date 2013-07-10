@@ -1,0 +1,41 @@
+# Maintainer: Sam Stuewe <halosghost at archlinux dot info>
+# Contributor: Mr_Men <tetcheve at gmail dot com>
+# Contributor: Hasan Gormus aka hsngrms <hsngrms at yandex dot com>
+# Contributor: uwinkelvos <uwinkelvos at gmx dot de>
+_name=nvidiabl
+pkgname="${_name}-git"
+pkgver=69.gb3b9270
+pkgrel=1
+pkgdesc="Driver to adjust display backlight on modern mobile NVidia graphics adapters."
+arch=('x86_64' 'i686')
+url="https://github.com/guillaumezin/nvidiabl"
+license=('GPL')
+makedepends=('linux-headers')
+optdepends=('nvidiablctl: adjust backlight easily')
+conflicts=('nvidia-bl')
+install="${_name}.install"
+source=("${_name}::git://github.com/guillaumezin/nvidiabl")
+sha256sums=('SKIP')
+
+MODPATH="${pkgdir}/usr/lib/modules/$(uname -r)/kernel/drivers/video/backlight/"
+
+pkgver() {
+   cd "${_name}"
+   echo "$(git rev-list --count HEAD).$(git describe --always|cut -d "-" -f3)"
+}
+
+prepare() {
+   cd "${_name}"
+   echo 'NVIDIABL_DECLARE_LAPTOP_MODEL("LENOVO", "20193", PCI_ANY_ID, NVIDIABL_SC_AUTO, NVIDIABL_AUTO, NVIDIABL_AUTO, 0x1FFFF),' >> nvidiabl-laptops.h
+   echo 'NVIDIABL_DECLARE_GPU_MODEL(0x0fe4, nv5x_driver_data),' >> nvidiabl-gpu.h
+}
+
+build() {
+   cd "${_name}"
+   make
+}
+
+package() {
+   cd "${_name}"
+   install -Dm644 -c nvidiabl.ko "${pkgdir}/$MODPATH/nvidiabl.ko"
+}
