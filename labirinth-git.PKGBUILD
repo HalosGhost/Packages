@@ -9,7 +9,7 @@ url="https://github.com/EvilTosha/${_name}"
 license=('GPLv3')
 depends=('bash')
 makedepends=('git')
-source=("${_name}::git+${url}.git")
+source=("${_name}::${url//https/git}.git")
 sha256sums=('SKIP')
 
 pkgver() {

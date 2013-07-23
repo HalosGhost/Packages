@@ -14,7 +14,7 @@ makedepends=('linux-headers')
 optdepends=('nvidiablctl: adjust backlight easily')
 conflicts=('nvidia-bl')
 install="${_name}.install"
-source=("${_name}::git+${url}.git")
+source=("${_name}::${url//https/git}.git")
 sha256sums=('SKIP')
 
 MODPATH="${pkgdir}/usr/lib/modules/$(uname -r)/kernel/drivers/video/backlight/"

@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url="https://github.com/halosghost/${_name}"
 license=('CCPL:CC-BY-SA')
 makedepends=('git')
-source=("${_name}::git+${url}.git")
+source=("${_name}::${url//https/git}.git")
 sha256sums=('SKIP')
 
 pkgver() {

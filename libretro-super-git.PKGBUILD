@@ -10,7 +10,7 @@ arch=('i686' 'x86_64')
 url="https://github.com/libretro/${_name}"
 license=('various')
 provides=('libretro')
-source=("${_name}::git+${url}.git")
+source=("${_name}::${url//https/git}.git")
 sha256sums=('SKIP')
 
 pkgver() {

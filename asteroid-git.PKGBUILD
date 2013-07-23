@@ -9,7 +9,7 @@ url="https://github.com/chazomaticus/${_name}"
 license=('GPLv3')
 depends=('freeglut' 'gtk2' 'hicolor-icon-theme' 'sdl_mixer')
 makedepends=('git' 'cmake')
-source=("${_name}::git+${url}.git")
+source=("${_name}::${url//https/git}.git")
 sha256sums=('SKIP')
 
 pkgver() {
