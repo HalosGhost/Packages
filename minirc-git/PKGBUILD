@@ -1,27 +1,27 @@
 # Maintainer: Sam Stuewe <halosghost at archlinux dot info>
-_gitname=minirc
-pkgname="${_gitname}-git"
+_name=minirc
+pkgname="${_name}-git"
 pkgver=61.61702d2
 pkgrel=1
 pkgdesc="A minimalist init system using busybox"
 arch=('any')
-url="https://github.com/hut/${_gitname}.git/"
+url="https://github.com/hut/${_name}"
 license=('GPLv2')
 conflicts=('systemd-sysvcompat' 'sysvinit')
 depends=('busybox')
 optdepends=('systemd: udev support')
 makedepends=('git')
-source=("${_gitname}::git://github.com/hut/${_gitname}.git")
+source=("${_name}::git+${url}.git")
 sha256sums=('SKIP')
 backup=('etc/inittab')
 
 pkgver() {
-  cd "${_gitname}"
+  cd "${_name}"
   echo "$(git rev-list --count HEAD).$(git describe --always )"
 }
 
 package() {
-  cd "${_gitname}"
+  cd "${_name}"
 
   # Execute Install Script
   ROOT="${pkgdir}" ./setup.sh --force

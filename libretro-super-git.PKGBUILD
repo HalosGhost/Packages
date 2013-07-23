@@ -7,10 +7,10 @@ pkgrel=1
 epoch=1
 pkgdesc="A collection of libretro implementations for RetroArch."
 arch=('i686' 'x86_64')
-url="https://github.com/libretro/libretro-super"
+url="https://github.com/libretro/${_name}"
 license=('various')
 provides=('libretro')
-source=("${_name}::git://github.com/libretro/${_name}.git")
+source=("${_name}::git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -27,6 +27,7 @@ build() {
 
 package() {
    cd dist/libretro
-   install -Dm644 -t "${pkgdir}"/usr/lib/libretro/ *.so
+   install -d "${pkgdir"/usr/lib/libretro
+   install -m644 *.so "${pkgdir}"/usr/lib/libretro/
 }
 

@@ -1,23 +1,25 @@
 # Maintainer: Sam Stuewe <halosghost at archlinux dot info>
-pkgname=labirinth-git
+_name=labirinth
+pkgname="${_name}-git"
 pkgver=0.26.79812ad
 pkgrel=4
 pkgdesc="A Three-Dimensional first-person shooter written in Bash"
 arch=('any')
-url="https://github.com/EvilTosha/labirinth.git"
+url="https://github.com/EvilTosha/${_name}"
 license=('GPLv3')
 depends=('bash')
 makedepends=('git')
-source=("${pkgname//-git/}::git://github.com/EvilTosha/labirinth.git")
+source=("${_name}::git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgname//-git/}"
+  cd "${_name}"
   echo "0.$(git rev-list --count HEAD).$(git describe --always)"
 }
 
 package() {
-  install -Dm755 "${pkgname//-git/}/lab2.sh" "${pkgdir}/usr/bin/${pkgname//-git/}"
+  cd "${_name}"
+  install -Dm755 lab2.sh "${pkgdir}/usr/bin/${_name}"
   find "${pkgdir}" -type d -name .git -exec rm -r '{}' +
 }
 

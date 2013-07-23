@@ -5,10 +5,10 @@ pkgver=9.a4d6a1b
 pkgrel=2
 pkgdesc="A lightweight statusbar program for use with Alopex"
 arch=('i686' 'x86_64')
-url="https://github.com/halosghost/${_name}.git"
+url="https://github.com/halosghost/${_name}"
 license=('CCPL:CC-BY-SA')
 makedepends=('git')
-source=("${_name}::git://github.com/HalosGhost/${_name}.git")
+source=("${_name}::git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {

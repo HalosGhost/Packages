@@ -1,30 +1,30 @@
 # Maintainer: Sam Stuewe <halosghost at archlinux dot info>
-_gitname=asteroid
-pkgname="${_gitname}-git"
-pkgver=1.2.1.2.g6d23595
-pkgrel=5
+_name=asteroid
+pkgname="${_name}-git"
+pkgver=1.2.1.3.gffeb0fd
+pkgrel=1
 pkgdesc="A modern version of the arcade classic Asteroids"
 arch=('i686' 'x86_64')
-url="https://github.com/chazomaticus/${pkgname//-/.}"
+url="https://github.com/chazomaticus/${_name}"
 license=('GPLv3')
 depends=('freeglut' 'gtk2' 'hicolor-icon-theme' 'sdl_mixer')
 makedepends=('git' 'cmake')
-source=("${pkgname//-git/}::git://github.com/chazomaticus/${pkgname//-/.}")
+source=("${_name}::git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${_gitname}"
+  cd "${_name}"
   git describe --always | sed 's|-|.|g'
 }
 
 prepare() {
-  cd "${_gitname}"
+  cd "${_name}"
   cmake -DCMAKE_INSTALL_PREFIX=/usr
   sed -i 's_lcairo_lcairo -lm_' CMakeFiles/asteroid.dir/link.txt
 }
 
 package() {
-  cd "${_gitname}"
+  cd "${_name}"
   make DESTDIR="${pkgdir}" PREFIX=/usr install
   find "${pkgdir}" -type d -name .git -exec rm -r '{}' +
 }

@@ -5,10 +5,10 @@ pkgver=f915325
 pkgrel=1
 pkgdesc="A small utility to modify the brightness of keyboard and monitor LEDs"
 arch=('i686' 'x86_64')
-url="https://github.com/halosghost/${_name}.git"
+url="https://github.com/halosghost/${_name}"
 license=('GPLv3')
 makedepends=('git')
-source=("${_name}::git://github.com/HalosGhost/${_name}.git")
+source=("${_name}::git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
