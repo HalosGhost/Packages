@@ -7,6 +7,7 @@ pkgdesc="A command-line image uploader"
 arch=('i686' 'x86_64')
 url="https://github.com/HalosGhost/${_name}"
 license=('CCPL:BY-SA')
+depends=('curl')
 makedepends=('git')
 source=("${_name}::${url//https/git}.git")
 sha256sums=('SKIP')
