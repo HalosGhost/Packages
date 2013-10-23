@@ -1,7 +1,7 @@
 # Maintainer: Sam Stuewe <halosghost at archlinux dot info>
 _name='portspoof'
 pkgname="${_name}-git"
-pkgver=1.55.13bc332
+pkgver=1.56.2a8c4a0
 pkgrel=1
 pkgdesc='A lightweight, fast, portable and secure addition to any firewall system or security infrastructure.'
 url='http://portspoof.org/'
@@ -13,7 +13,7 @@ sha256sums=('SKIP')
 
 pkgver() {
    cd "${srcdir}/${_name}"
-   echo "1.$(git rev-list --count HEAD).$(git describe --always )"
+   echo "1.$(git rev-list --count HEAD).$(git log -1 --pretty=format:%h )"
 }
 
 build() {
