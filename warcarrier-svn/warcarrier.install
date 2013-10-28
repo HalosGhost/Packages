@@ -1,0 +1,4 @@
+post_install(){
+   ln -s /usr/bin/warcarrier /usr/bin/wcclean
+   ln -s /usr/bin/warcarrier /usr/bin/wcd
+}
