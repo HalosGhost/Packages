@@ -15,7 +15,7 @@ install="${_name}.install"
 source=("${_name}::svn+http://warcarrier.googlecode.com/svn/trunk/"
         "${_name}.sh")
 sha256sums=('SKIP'
-            '46a0e460fe33d4c8a41a475ae2a2c8aabe3690880cb0dd09e5ca80a1e256276f')
+            '233fb9a99b251e6d4df784f1b19f294d6eff5df464adf02e43c419a9f5a7c2c3')
 
 pkgver() {
    cd "${srcdir}/${_name}"
