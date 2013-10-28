@@ -3,7 +3,7 @@
 _name=warcarrier
 pkgname="${_name}-svn"
 pkgver=56  
-pkgrel=1
+pkgrel=2
 pkgdesc='An ncurses-based, all-in-one instrument panel for professional wardriving.'
 url='https://code.google.com/p/warcarrier/'
 arch=('any')
