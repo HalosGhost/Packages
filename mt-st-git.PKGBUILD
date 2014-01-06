@@ -1,4 +1,3 @@
-# Maintainer: Sam Stuewe <halosghost at archlinux dot info>
 _name='mt-st'
 pkgname="${_name}-git"
 pkgver=5.7676fc4
@@ -6,8 +5,9 @@ pkgrel=1
 pkgdesc='Utilities for managing magnetic tape storage devices'
 arch=('i686' 'x86_64')
 url="https://github.com/Distrotech/${_name}"
-license=('CCPL:CC-BY-SA')
+license=('GPLv2')
 makedepends=('git')
+depends=('tar')
 source=("${_name}::${url//https/git}.git")
 sha256sums=('SKIP')
 
