@@ -5,11 +5,11 @@ pkgver=1.2.1.3.gffeb0fd
 pkgrel=1
 pkgdesc="A modern version of the arcade classic Asteroids"
 arch=('i686' 'x86_64')
-url="https://github.com/chazomaticus/${_name}"
+url="http://chazomaticus.github.io/asteroid/"
 license=('GPLv3')
 depends=('freeglut' 'gtk2' 'hicolor-icon-theme' 'sdl_mixer')
 makedepends=('git' 'cmake')
-source=("${_name}::${url//https/git}.git")
+source=("${_name}::git+https://github.com/chazomaticus/${_name}.git")
 sha256sums=('SKIP')
 
 pkgver() {
